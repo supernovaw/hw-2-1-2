@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Homework 2.1.2</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="country_RU">Russia</string>
+    <string name="country_UA">Ukraine</string>
+    <string name="country_BY">Belarus</string>
+    <string-array name="countries">
+        <item>@string/country_RU</item>
+        <item>@string/country_UA</item>
+        <item>@string/country_BY</item>
+    </string-array>
+    <string-array name="cities_RU">
+        <item>Moscow</item>
+        <item>Saint-Petersburg</item>
+        <item>Kazan</item>
+    </string-array>
+    <string-array name="cities_UA"> // glory
+        <item>Kyiv</item>
+        <item>Odessa</item>
+        <item>Kharkiv</item>
+        <item>Simferopol</item>
+    </string-array>
+    <string-array name="cities_BY">
+        <item>Minsk</item>
+        <item>Gomel</item>
+        <item>Grodno</item>
+    </string-array>
+</resources>
