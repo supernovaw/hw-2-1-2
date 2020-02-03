@@ -11,7 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-	private Spinner countriesSpinner, citiesSpinner, homesSpinner;
+	private Spinner countriesSpinner;
+	private Spinner citiesSpinner;
+	private Spinner homesSpinner;
 	private Button confirmButton;
 
 	private ArrayAdapter<CharSequence> adapterCountries;
@@ -37,25 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
 	private void initSpinners() {
 		adapterCountries = getAdapter(R.array.countries);
-		ArrayAdapter<CharSequence> adapter_RU = getAdapter(R.array.cities_RU);
-		ArrayAdapter<CharSequence> adapter_UA = getAdapter(R.array.cities_UA);
-		ArrayAdapter<CharSequence> adapter_BY = getAdapter(R.array.cities_BY);
-		adaptersCities = new ArrayAdapter[]{adapter_RU, adapter_UA, adapter_BY};
+		ArrayAdapter<CharSequence> adapterRU = getAdapter(R.array.cities_RU);
+		ArrayAdapter<CharSequence> adapterUA = getAdapter(R.array.cities_UA);
+		ArrayAdapter<CharSequence> adapterBY = getAdapter(R.array.cities_BY);
+		adaptersCities = new ArrayAdapter[]{adapterRU, adapterUA, adapterBY};
 
 		Integer[] numbers = new Integer[50];
-		for (int i = 0; i < numbers.length; i++)
+		for (int i = 0; i < numbers.length; i++) {
 			numbers[i] = i + 1;
+		}
 		adapterNumbers = new ArrayAdapter<>(this,
 				android.R.layout.simple_spinner_dropdown_item, numbers);
 
 		countriesSpinner.setAdapter(adapterCountries);
-		citiesSpinner.setAdapter(adapter_RU);
+		citiesSpinner.setAdapter(adapterRU);
 		homesSpinner.setAdapter(adapterNumbers);
 
 		AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				switch (view.getId()) {
+				switch (parent.getId()) {
 					case R.id.countriesSpinner:
 						citiesSpinner.setAdapter(adaptersCities[position]);
 						homesSpinner.setSelection(0);
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 		String country = (String) countriesSpinner.getSelectedItem();
 		String city = (String) citiesSpinner.getSelectedItem();
 		int home = (int) homesSpinner.getSelectedItem();
-		String address = String.format("country='%s', city='%s', home='%d'", country, city, home);
+		String address = getString(R.string.confirm_toast, country, city, home);
 		Toast.makeText(this, address, Toast.LENGTH_SHORT).show();
 	}
 }
